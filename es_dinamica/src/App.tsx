@@ -1,24 +1,51 @@
+import './App.css';
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
 
 function App() {
+
+  const len_numbers = 8;
+  const [numbers, setNumbers] = React.useState<number[]>([]);
+
+  const handleSort = () => {
+    let new_numbers = [...numbers];
+    new_numbers.sort((a, b) => a - b);
+    setNumbers(new_numbers);
+  }
+
+  const renderNumbersInput = () => {
+    let inputs = [];
+    for (let i = 0; i < len_numbers; i++) {
+      inputs.push(
+        <div>
+          <label>Número: </label>
+          <input
+            key={i}
+            type="number"
+            onChange={(e) => {
+              let new_numbers = [...numbers];
+              new_numbers[i] = parseInt(e.target.value);
+              setNumbers(new_numbers);
+            }}
+            />
+        </div>
+      );
+    }
+    return inputs;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App" style={{maxWidth: "100%", overflow: "hidden"}}>
+      <h1>Números</h1>
+      <div style={{display:"flex", flexDirection: "column"}}>
+        {renderNumbersInput()}
+      </div>
+      <button onClick={() => handleSort()} style={{marginTop: "10px"}}>Entrar</button>
+      <hr/>
+      <h1>
+        Busque Número
+      </h1>
+      
     </div>
   );
 }
