@@ -62,7 +62,7 @@ function App() {
     <Router>
       <div className="App" style={{ maxWidth: "100%", overflow: "hidden" }}>
         <nav>
-          <ul>
+          <ul style={{listStyleType:'none'}}>
             <li><Link to="/">Números</Link></li>
             <li><Link to="/sorted">Números Ordenados</Link></li>
             <li><Link to="/search">Busque Número pelo Index</Link></li>
